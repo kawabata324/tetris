@@ -19,10 +19,10 @@ const startGame = () => {
         type="text"
         placeholder="名前を入力してください(10文字以内)"
         maxlength="10"
-      />
+      >
       <button
-        @click="startGame"
         class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-10"
+        @click="startGame"
       >
         ゲームスタート!
       </button>

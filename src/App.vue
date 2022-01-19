@@ -1,9 +1,8 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
-<!-- Main.ts内でrouter-viewをPluginとして読み込んでいるためScript内でimportしなくても良い -->
-  <router-view></router-view>
+  <!-- Main.ts内でrouter-viewをPluginとして読み込んでいるためScript内でimportしなくても良い -->
+  <router-view />
 </template>
 
 <style scoped></style>

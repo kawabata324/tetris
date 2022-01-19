@@ -1,3 +1,5 @@
+const INLINE_ELEMENTS = require("./node_modules/eslint-plugin-vue/lib/utils/inline-non-void-elements.json");
+
 module.exports = {
   // プロジェクトで利用する大元の設定ファイルであることを明示する
   //意図しない ESLint の設定が適用を防ぐことが可能
@@ -16,12 +18,18 @@ module.exports = {
   //複数回同じ変数を宣言できないようにする。初期化の混乱を避けるために
   rules: {
     "no-redeclare": "off",
+    "vue/singleline-html-element-content-newline": [
+      "error",
+      {
+        ignores: ["div", "pre", "textarea", ...INLINE_ELEMENTS],
+      },
+    ],
   },
   //defineProps not definedを解消する
-  globals:{
+  globals: {
     defineProps: "readonly",
     defineEmits: "readonly",
     defineExpose: "readonly",
-    withDefaults: "readonly"
-  }
+    withDefaults: "readonly",
+  },
 };
