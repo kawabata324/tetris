@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import TopPages from "./pages/TopPage.vue";
 </script>
 
 <template>
-  <TopPages />
+<!-- Main.ts内でrouter-viewをPluginとして読み込んでいるためScript内でimportしなくても良い -->
+  <router-view></router-view>
 </template>
 
 <style scoped></style>
