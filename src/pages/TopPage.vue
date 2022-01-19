@@ -11,7 +11,7 @@ const startGame = () => {
 <template>
   <div class="container mx-auto my-20 text-center">
     <h1 class="text-3xl font-bold">トップ画面</h1>
-    <p class="mt-10">{{ state.name }}</p>
+    <h2 class="text-xl mt-10">{{ state.name }}</h2>
     <div class="flex flex-col mx-auto items-center mt-10 w-80">
       <input
         v-model="state.name"
