@@ -11,21 +11,47 @@ const state = reactive({
 const rowNum = 20;
 const columnNum = 10;
 //20行の空の配列を定義 [[],[].....]
-  const fields: number[][] = new Array(rowNum);
+const fields: number[][] = new Array(rowNum);
 
-for (let step=0; step < rowNum; step++){
+for (let step = 0; step < rowNum; step++) {
   //[,,,,,,,,,] 10個の区切りがある配列を作成し fill methodで全てに０を入れるfieldColumnを作る
   const fieldColumn = new Array(columnNum).fill(0);
 
   //fields[0] に作成した０が10個入った配列を代入し、行ごとに管理できるようにする
-  fields[step] = fieldColumn
+  fields[step] = fieldColumn;
 }
 
 //画面の最上部の左端にIテトロミノを出現させる
-fields[0][0] = 1
-fields[1][0] = 1
-fields[2][0] = 1
-fields[3][0] = 1
+fields[0][0] = 1;
+fields[1][0] = 1;
+fields[2][0] = 1;
+fields[3][0] = 1;
+
+const classBlockColor = (y: number, x: number): string => {
+  const colorType = fields[y][x];
+  if (colorType > 0) {
+    switch (colorType) {
+      case 1:
+        return "block-i-light-blue";
+      case 2:
+        return "block-o-yellow";
+      case 3:
+        return "block-s-green";
+      case 4:
+        return "block-z-red";
+      case 5:
+        return "block-j-blue";
+      case 6:
+        return "block-l-orange";
+      case 7:
+        return "block-t-purple";
+      default:
+        return "";
+    }
+  } else {
+    return "";
+  }
+};
 
 //テトロミノの定義
 const tetrominos = [
@@ -53,7 +79,7 @@ const tetrominos = [
     [0, 4, 4],
   ],
   [
-    //5:J-テトロミノ藍色
+    //5:J-テトロミノ青色
     [0, 0, 5],
     [5, 5, 5],
   ],
@@ -80,11 +106,10 @@ const tetrominos = [
             <tr v-for="(row, y) in fields" :key="y">
               <td
                 v-for="(column, x) in row"
-                :key="() => `${x}${y}`"
+                :key="() => `${y}${x}`"
                 class="border border-black p-4"
-              >
-                {{ column }}
-              </td>
+                :class="classBlockColor(y,x)"
+              />
             </tr>
           </tbody>
         </table>
@@ -92,4 +117,27 @@ const tetrominos = [
     </div>
   </div>
 </template>
-<style scoped></style>
+<style scoped>
+.block-i-light-blue {
+  background-color: aqua;
+}
+.block-o-yellow {
+  background-color: yellow;
+}
+.block-s-green {
+  background-color: green;
+}
+.block-z-red {
+  background-color: red;
+}
+.block-j-blue {
+  background-color: blue;
+}
+.block-l-orange {
+  background-color: orange;
+}
+
+.block-t-purple {
+  background-color: purple;
+}
+</style>
