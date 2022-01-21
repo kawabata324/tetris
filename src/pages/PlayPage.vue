@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 import { useRoute } from "vue-router";
+import { Tetromino, TETROMINO_TYPE } from "../common/Tetromino";
 
 const route = useRoute();
 const state = reactive({
@@ -28,72 +29,10 @@ fields[2][0] = 1;
 fields[3][0] = 1;
 
 const classBlockColor = (y: number, x: number): string => {
-  const colorType = fields[y][x];
-  if (colorType > 0) {
-    switch (colorType) {
-      case 1:
-        return "block-i-light-blue";
-      case 2:
-        return "block-o-yellow";
-      case 3:
-        return "block-s-green";
-      case 4:
-        return "block-z-red";
-      case 5:
-        return "block-j-blue";
-      case 6:
-        return "block-l-orange";
-      case 7:
-        return "block-t-purple";
-      default:
-        return "";
-    }
-  } else {
-    return "";
-  }
+  const colorType: TETROMINO_TYPE = fields[y][x] as TETROMINO_TYPE;
+  return Tetromino.colorType(colorType);
 };
 
-//テトロミノの定義
-const tetrominos = [
-  [
-    //0:空白
-    [0],
-  ],
-  [
-    //1:I-テトロミノ水色
-    [1, 1, 1, 1],
-  ],
-  [
-    //2:O-テトロミノ黄色
-    [2, 2],
-    [2, 2],
-  ],
-  [
-    //3:S-テトロミノ緑色
-    [0, 3, 3],
-    [3, 3, 0],
-  ],
-  [
-    //4:Z-テトロミノ赤色
-    [4, 4, 0],
-    [0, 4, 4],
-  ],
-  [
-    //5:J-テトロミノ青色
-    [0, 0, 5],
-    [5, 5, 5],
-  ],
-  [
-    //6:L-テトロミノオレンジ
-    [6, 0, 0],
-    [6, 6, 6],
-  ],
-  [
-    //7:T-テトロミノ紫
-    [0, 7, 0],
-    [7, 7, 7],
-  ],
-];
 </script>
 <template>
   <div class="container mx-auto my-20 text-center">
@@ -108,7 +47,7 @@ const tetrominos = [
                 v-for="(column, x) in row"
                 :key="() => `${y}${x}`"
                 class="border border-black p-4"
-                :class="classBlockColor(y,x)"
+                :class="classBlockColor(y, x)"
               />
             </tr>
           </tbody>
