@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 import { useRoute } from "vue-router";
-import { Tetromino, TETROMINO_TYPE } from "../common/Tetromino";
+import { Tetromino } from "../common/Tetromino";
+import { TETROMINO_TYPE } from '../type/type';
 
 const route = useRoute();
 const state = reactive({
