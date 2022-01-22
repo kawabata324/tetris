@@ -47,7 +47,7 @@ const tetrominos = [
 
 export class Tetromino {
   constructor(private type: TETROMINO_TYPE) {}
-  //Tetrominoの
+  //Tetrominoのstyleをstringで返す
   static colorType(colorType: TETROMINO_TYPE): string {
     switch (colorType) {
       case 1:
@@ -76,9 +76,9 @@ export class Tetromino {
   static random(): Tetromino {
     //0:空白が含まれているので除外 7
     const tetrominoTypes = tetrominos.length - 1;
-    //1~6までの値 なので +1して１~7までの値にしてその値をランダムに取得する
-    const type = Math.floor(Math.random() * tetrominoTypes) + 1;
+    //0~6までの値 なので +1して１~7までの値にしてその値をランダムに取得する
+    const randomType = Math.floor(Math.random() * tetrominoTypes) + 1;
 
-    return new Tetromino(type as TETROMINO_TYPE)
+    return new Tetromino(randomType as TETROMINO_TYPE)
   }
 }
