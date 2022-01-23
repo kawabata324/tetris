@@ -1,9 +1,9 @@
-import { TETROMINO_TYPE } from './TETROMINO_TYPE';
+import { TETROMINO_TYPE } from "./TETROMINO_TYPE";
 
 const tetromino = [
   [
     //0 空白
-    [0]
+    [0],
   ],
   //1-Iの水色
   [[1, 1, 1, 1]],
@@ -64,17 +64,18 @@ export class Tetromino {
     }
   }
 
-  static random(): Tetromino{
+  static random(): Tetromino {
     //8 - 1 = 7
-    const tetrominoTypes = tetromino.length - 1
+    const tetrominoTypes = tetromino.length - 1;
     //1 ~ 7
-    const randomType = Math.floor(Math.random() * tetrominoTypes) + 1
+    const randomType = Math.floor(Math.random() * tetrominoTypes) + 1;
 
-    return new Tetromino(randomType as TETROMINO_TYPE)
+    return new Tetromino(randomType as TETROMINO_TYPE);
   }
 
   get data() {
     return tetromino[this.type];
   }
-
 }
+
+

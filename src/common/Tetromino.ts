@@ -82,3 +82,4 @@ export class Tetromino {
     return new Tetromino(randomType as TETROMINO_TYPE)
   }
 }
+

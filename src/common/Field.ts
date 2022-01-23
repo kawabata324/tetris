@@ -23,19 +23,19 @@ export class Field {
 
   //テトリスのフィールドをコピーするために利用する。テトロミノ設置直後のテトリスのフィールドをコピーすることで、それを次のテトロミノが落下してくる際の状態を保持するテトリスのフィールドとして利用可能になる
   //引数 fieldには、コピーしたいテトリスのフィールドを指定する
-  static deepCopy = (field: Field): Field =>{
+  static deepCopy = (field: Field): Field => {
     const data = field.data;
-    const newFieldData = new Array<Array<number>>(data.length)
+    const newFieldData: number[][] = new Array(data.length);
 
-    for (const [i, rows] of data.entries()){
-      newFieldData[i] = new Array(rows.length);
-      for(const [j] of rows.entries()){
-        newFieldData[i][j] = data[i][j]
-      }
-    }
+    data.forEach((rows, x) => {
+      newFieldData[x] = new Array(rows.length);
+      rows.forEach((_, y) => {
+        newFieldData[x][y] = data[x][y];
+      });
+    });
 
-    return new Field(newFieldData)
-  }
+    return new Field(newFieldData);
+  };
 
   //自身のテトリスのフィールドの二次元配列を取得する
   get data(): number[][] {
@@ -47,14 +47,14 @@ export class Field {
   //position引数には、テトリミノの位置をx,yのオブジェクトで指定する
   update = (data: number[][], position: { x: number; y: number }): void => {
     //テトリミノの描画領域のマス目を１マスずつチェックする
-    for(let i = 0; i < data.length; i++){
-      const cols = data[i]
-      for (let j = 0; j < cols.length; j++){
+    for (let i = 0; i < data.length; i++) {
+      const cols = data[i];
+      for (let j = 0; j < cols.length; j++) {
         const block = cols[j];
 
         //テトロミノを描画すべきマス目(block > 0)であれば、そのマスにテトロミノの値を設定する
-        if(block>0){
-          this.field[i + position.y][j + position.x] = block
+        if (block > 0) {
+          this.field[i + position.y][j + position.x] = block;
         }
       }
     }
